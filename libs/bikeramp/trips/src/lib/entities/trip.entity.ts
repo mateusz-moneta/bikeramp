@@ -22,4 +22,8 @@ export class Trip {
   @ApiModelProperty()
   @Column()
   date: string;
+
+  constructor(partial: Partial<Trip>) {
+    Object.assign(this, partial);
+  }
 }

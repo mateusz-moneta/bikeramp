@@ -1,0 +1,23 @@
+{
+  "root": "libs/bikeramp/stats",
+  "sourceRoot": "libs/bikeramp/stats/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/bikeramp/stats/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/bikeramp/stats"],
+      "options": {
+        "jestConfig": "libs/bikeramp/stats/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
