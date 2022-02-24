@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "bikeramp": "apps/bikeramp"
+    "bikeramp": "apps/bikeramp",
+    "bikeramp-trips": "libs/bikeramp/trips"
   }
 }
