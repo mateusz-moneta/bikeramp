@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bikeramp/bikeramp/database": ["libs/bikeramp/database/src/index.ts"],
       "@bikeramp/bikeramp/trips": ["libs/bikeramp/trips/src/index.ts"]
     }
   },
