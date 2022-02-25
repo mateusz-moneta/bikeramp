@@ -1,2 +1,2 @@
 export * from './lib/bikeramp-trips.module';
-export * from './lib/entities/trip.entity';
+export * from './lib/trip.entity';

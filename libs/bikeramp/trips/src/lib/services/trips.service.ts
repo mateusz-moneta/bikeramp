@@ -1,12 +1,21 @@
-import { getManager } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 
 import { CreateTripDto } from '../dto/create-trip.dto';
-import { Trip } from '../entities/trip.entity';
+import { GoogleMapsService } from './google-maps.service';
+import { Trip } from '../trip.entity';
 
+@Injectable()
 export class TripsService {
-  async create(createTripDto: CreateTripDto) {
-    const trip = new Trip(createTripDto);
-    const manager = getManager();
-    return await manager.save(trip);
+
+  constructor(private readonly googleMapsService: GoogleMapsService) {}
+
+  async create(createTripDto: CreateTripDto): Promise<any> {
+    const cord = this.googleMapsService.getCoordinates(createTripDto.start_address);
+    /* const trip = new Trip({
+      ...createTripDto,
+      distance: 10.5
+    });
+    return await trip.save(); */
+    return cord;
   }
 }

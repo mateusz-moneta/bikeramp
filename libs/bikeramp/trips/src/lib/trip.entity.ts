@@ -1,8 +1,8 @@
 import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'trips' })
-export class Trip {
+export class Trip  extends BaseEntity {
   @ApiModelProperty()
   @PrimaryGeneratedColumn()
   id: number;
@@ -15,15 +15,19 @@ export class Trip {
   @Column()
   destination_address: string;
 
+  @Column({ type: 'numeric', precision: 10, scale: 3 })
+  distance: number;
+
   @ApiModelProperty()
-  @Column()
+  @Column({ type: 'numeric', precision: 10, scale: 2 })
   price: number;
 
   @ApiModelProperty()
-  @Column()
+  @Column({ type: 'date' })
   date: string;
 
   constructor(partial: Partial<Trip>) {
+    super();
     Object.assign(this, partial);
   }
 }
