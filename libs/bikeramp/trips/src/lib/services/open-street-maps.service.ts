@@ -10,7 +10,7 @@ export class OpenStreetMapsService {
 
     const geoCodingOSM = new GeoCodingOSM();
     const results = await geoCodingOSM.search(searchParams);
-    const { lat, lon } = results[0];
+    const [{ lat, lon }] = results;
 
     return { lat: +lat, lon: +lon };
   }
