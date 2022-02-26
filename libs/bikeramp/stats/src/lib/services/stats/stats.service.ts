@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { Between, getConnection } from 'typeorm';
 
 import { Trip } from '@bikeramp/bikeramp/trips';
-import { DateService } from './date.service';
-import { MonthlyStatDto } from '../dto/monthly-stat.dto';
-import { WeeklyStatDto } from '../dto/weekly-stat.dto';
+import { DateService } from '../date/date.service';
+import { MonthlyStatDto } from '../../dto/monthly-stat.dto';
+import { WeeklyStatDto } from '../../dto/weekly-stat.dto';
 
 @Injectable()
 export class StatsService {
@@ -16,7 +16,7 @@ export class StatsService {
 
     return await getConnection()
       .createQueryBuilder()
-      .select("TO_CHAR(date, 'fmMonth, DDth')", "day")
+      .select("TO_CHAR(date, 'fmMonth, fmDDth')", "day")
       .addSelect("ROUND(SUM(distance), 3) || 'km'", "total_distance")
       .addSelect("ROUND(AVG(distance), 3) || 'km'", "avg_ride")
       .addSelect("ROUND(AVG(price), 2) || 'PLN'", "avg_price")

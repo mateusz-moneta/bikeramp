@@ -3,7 +3,7 @@ import { ApiResponse } from '@nestjs/swagger';
 
 import { CreateTripDto } from './dto/create-trip.dto';
 import { Trip } from './trip.entity';
-import { TripsService } from './services/trips.service';
+import { TripsService } from './services/trips/trips.service';
 
 @Controller('trips')
 export class BikerampTripsController {

@@ -1,9 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { StatsService } from './services/stats.service';
-import { Trip } from '@bikeramp/bikeramp/trips';
-import { WeeklyStatDto } from './dto/weekly-stat.dto';
+import { StatsService } from './services/stats/stats.service';
 import { MonthlyStatDto } from './dto/monthly-stat.dto';
+import { WeeklyStatDto } from './dto/weekly-stat.dto';
 
 @Controller('stats')
 export class BikerampStatsController {

@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
+import { CoordinatesDto } from '../../dto/coordinates.dto';
+
 @Injectable()
 export class MapsService {
-   calcCrow(startAddressCoordinates: { lat: number; lon: number }, destinationAddressCoordinates: { lat: number; lon: number }): number {
+   calcCrow(startAddressCoordinates: CoordinatesDto, destinationAddressCoordinates: CoordinatesDto): number {
     const R = 6371;
     const dLat = this.toRad(destinationAddressCoordinates.lat - startAddressCoordinates.lat);
     const dLon = this.toRad(destinationAddressCoordinates.lon - startAddressCoordinates.lon);

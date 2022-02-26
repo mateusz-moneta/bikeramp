@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import GeoCodingOSM from 'geocoding-osm';
 
+import { CoordinatesDto } from '../../dto/coordinates.dto';
+
 @Injectable()
 export class OpenStreetMapsService {
-  async getCoordinates(address: string): Promise<{ lat: number; lon: number }> {
+  async getCoordinates(address: string): Promise<CoordinatesDto> {
     const searchParams = {
       q: address
     };

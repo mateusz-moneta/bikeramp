@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { MapsService } from './maps.service';
-import { OpenStreetMapsService } from './open-street-maps.service';
+import { MapsService } from '../maps/maps.service';
+import { OpenStreetMapsService } from '../open-street-maps/open-street-maps.service';
 
-import { CreateTripDto } from '../dto/create-trip.dto';
-import { Trip } from '../trip.entity';
+import { CreateTripDto } from '../../dto/create-trip.dto';
+import { Trip } from '../../trip.entity';
 
 @Injectable()
 export class TripsService {
