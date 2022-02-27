@@ -11,8 +11,8 @@ describe(BikerampStatsController.name, () => {
     const StatsServiceProvider = {
       provide: StatsService,
       useFactory: () => ({
-        getMonthly: jest.fn(() => []),
-        getWeekly: jest.fn(() => ({}))
+        getMonthly: jest.fn(() => {}),
+        getWeekly: jest.fn(() => {})
       })
     }
 

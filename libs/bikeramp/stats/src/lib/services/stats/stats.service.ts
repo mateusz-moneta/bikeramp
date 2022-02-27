@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Between, getConnection } from 'typeorm';
 
-import { Trip } from '@bikeramp/bikeramp/trips';
+import { Trip } from '@bikeramp/bikeramp/trips-database';
 import { DateService } from '../date/date.service';
 import { MonthlyStatDto } from '../../dto/monthly-stat.dto';
 import { WeeklyStatDto } from '../../dto/weekly-stat.dto';
@@ -34,7 +34,7 @@ export class StatsService {
 
     return await getConnection()
       .createQueryBuilder()
-      .addSelect("SUM(distance) || 'km'", "total_distance")
+      .select("SUM(distance) || 'km'", "total_distance")
       .addSelect("SUM(price) || 'PLN'", "total_price")
       .from(Trip, "trip")
       .where( {

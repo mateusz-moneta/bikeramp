@@ -2,7 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 
 import { CreateTripDto } from './dto/create-trip.dto';
-import { Trip } from './trip.entity';
+import { Trip } from '@bikeramp/bikeramp/trips-database';
 import { TripsService } from './services/trips/trips.service';
 
 @Controller('trips')

@@ -3,7 +3,7 @@ import { MapsService } from '../maps/maps.service';
 import { OpenStreetMapsService } from '../open-street-maps/open-street-maps.service';
 
 import { CreateTripDto } from '../../dto/create-trip.dto';
-import { Trip } from '../../trip.entity';
+import { Trip } from '@bikeramp/bikeramp/trips-database';
 
 @Injectable()
 export class TripsService {

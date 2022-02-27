@@ -11,7 +11,7 @@ export class BikerampStatsController {
 
   @Get('monthly')
   async getMonthly(): Promise<MonthlyStatDto[]> {
-    return this.statsService.getMonthlyStats();
+    return await this.statsService.getMonthlyStats();
   }
 
   @Get('weekly')

@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { BikerampDatabaseModule } from '@bikeramp/bikeramp/database';
 import { BikerampStatsModule } from '@bikeramp/bikeramp/stats';
+import { BikerampTripsModule } from '@bikeramp/bikeramp/trips';
 
 @Module({
   imports: [
     BikerampStatsModule,
+    BikerampTripsModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         POSTGRES_HOST: Joi.string().required(),
@@ -21,8 +21,6 @@ import { BikerampStatsModule } from '@bikeramp/bikeramp/stats';
       })
     }),
     BikerampDatabaseModule
-  ],
-  controllers: [AppController],
-  providers: [AppService]
+  ]
 })
 export class AppModule {}

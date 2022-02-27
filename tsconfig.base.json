@@ -17,7 +17,10 @@
     "paths": {
       "@bikeramp/bikeramp/database": ["libs/bikeramp/database/src/index.ts"],
       "@bikeramp/bikeramp/stats": ["libs/bikeramp/stats/src/index.ts"],
-      "@bikeramp/bikeramp/trips": ["libs/bikeramp/trips/src/index.ts"]
+      "@bikeramp/bikeramp/trips": ["libs/bikeramp/trips/src/index.ts"],
+      "@bikeramp/bikeramp/trips-database": [
+        "libs/bikeramp/trips-database/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

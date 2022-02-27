@@ -1,0 +1,23 @@
+{
+  "root": "libs/bikeramp/trips-database",
+  "sourceRoot": "libs/bikeramp/trips-database/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/bikeramp/trips-database/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/bikeramp/trips-database"],
+      "options": {
+        "jestConfig": "libs/bikeramp/trips-database/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

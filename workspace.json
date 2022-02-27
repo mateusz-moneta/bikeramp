@@ -4,6 +4,7 @@
     "bikeramp": "apps/bikeramp",
     "bikeramp-database": "libs/bikeramp/database",
     "bikeramp-stats": "libs/bikeramp/stats",
-    "bikeramp-trips": "libs/bikeramp/trips"
+    "bikeramp-trips": "libs/bikeramp/trips",
+    "bikeramp-trips-database": "libs/bikeramp/trips-database"
   }
 }
