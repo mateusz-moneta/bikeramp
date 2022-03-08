@@ -4,17 +4,17 @@ import { IsString } from 'class-validator';
 export class MonthlyStatDto {
   @ApiModelProperty()
   @IsString()
-  day: string;
+  readonly day: string;
 
   @ApiModelProperty()
   @IsString()
-  total_distance: string;
+  readonly total_distance: string;
 
   @ApiModelProperty()
   @IsString()
-  avg_ride: string;
+  readonly avg_ride: string;
 
   @ApiModelProperty()
   @IsString()
-  avg_price: string;
+  readonly avg_price: string;
 }

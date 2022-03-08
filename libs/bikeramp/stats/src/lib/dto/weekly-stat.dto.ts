@@ -4,9 +4,9 @@ import { IsString } from 'class-validator';
 export class WeeklyStatDto {
   @ApiModelProperty()
   @IsString()
-  total_distance: string;
+  readonly total_distance: string;
 
   @ApiModelProperty()
   @IsString()
-  total_price: string;
+  readonly total_price: string;
 }

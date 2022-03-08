@@ -8,6 +8,7 @@ import { BikerampTripsModule } from '@bikeramp/bikeramp/trips';
 
 @Module({
   imports: [
+    BikerampDatabaseModule,
     BikerampStatsModule,
     BikerampTripsModule,
     ConfigModule.forRoot({
@@ -18,9 +19,9 @@ import { BikerampTripsModule } from '@bikeramp/bikeramp/trips';
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
         PORT: Joi.number(),
-      })
-    }),
-    BikerampDatabaseModule
+      }),
+      isGlobal: true
+    })
   ]
 })
 export class AppModule {}

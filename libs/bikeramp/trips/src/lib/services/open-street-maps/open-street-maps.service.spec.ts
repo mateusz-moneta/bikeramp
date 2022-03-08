@@ -2,32 +2,33 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { OpenStreetMapsService } from './open-street-maps.service';
 
-class OpenStreetMapsServiceMock {
-  getCoordinates(address: string) {
-    return { lat: 52.23268785, lon: 20.985199551502667 };
-  }
-}
-
 describe(OpenStreetMapsService.name, () => {
   let openStreetMapsService: OpenStreetMapsService;
 
   beforeEach(async () => {
-    const OpenStreetMapsServiceProvider = {
-      provide: OpenStreetMapsService,
-      useClass: OpenStreetMapsServiceMock
-    }
-
     const module: TestingModule = await Test.createTestingModule({
-      providers: [OpenStreetMapsService, OpenStreetMapsServiceProvider]
+      providers: [OpenStreetMapsService]
     }).compile();
 
     openStreetMapsService = module.get<OpenStreetMapsService>(OpenStreetMapsService);
   })
 
-  it('should call getCoordinates method with expected params', async () => {
-    const getCoordinatesSpy = jest.spyOn(openStreetMapsService, 'getCoordinates');
-    const address = 'Polanowice 68K, Polska';
-    await openStreetMapsService.getCoordinates(address);
-    expect(getCoordinatesSpy).toHaveBeenCalledWith(address);
+  it('OpenStreetMapsService - should be defined', () => {
+    expect(openStreetMapsService).toBeDefined();
+  });
+
+  describe('getCoordinates', () => {
+    it('should call method with expected params', async () => {
+      const getCoordinatesSpy = jest.spyOn(openStreetMapsService, 'getCoordinates');
+      const address = 'Polanowice 68K, Polska';
+      await openStreetMapsService.getCoordinates(address);
+      expect(getCoordinatesSpy).toHaveBeenCalledWith(address);
+    });
+
+    it('should return coordinates for: Polanowice 68K, Polska', async () => {
+      const address = 'Polanowice 68K, Polska';
+      const coordinates = await openStreetMapsService.getCoordinates(address);
+      expect(coordinates).toEqual({ lat: 50.2032757, lon: 20.052913966643743 });
+    });
   });
 })

@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { CreateTripDto } from './dto/create-trip.dto';
-import { Trip } from '@bikeramp/bikeramp/trips-database';
+import { TripDto } from './dto/trip.dto';
 import { TripsService } from './services/trips/trips.service';
 
 @Controller('trips')
@@ -10,9 +10,13 @@ export class BikerampTripsController {
 
   constructor(private readonly tripsService: TripsService) {}
 
-  @ApiResponse({ type: Trip, status: 201 })
+  @ApiTags('trips')
+  @ApiResponse({
+    type: TripDto,
+    status: 201,
+  })
   @Post()
-  async create(@Body() createTripDto: CreateTripDto) {
+  async create(@Body() createTripDto: CreateTripDto): Promise<TripDto> {
     return await this.tripsService.create(createTripDto);
   }
 }
