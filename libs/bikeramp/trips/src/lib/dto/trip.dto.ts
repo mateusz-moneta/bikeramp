@@ -1,30 +1,28 @@
 import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
-import { IsDateString, IsNotEmpty } from 'class-validator';
+import { IsDateString, IsNumber, IsString, IsUUID } from 'class-validator';
 
 export class TripDto {
   @ApiModelProperty()
-  @IsNotEmpty()
+  @IsUUID()
   readonly id: number;
 
   @ApiModelProperty()
-  @IsNotEmpty()
+  @IsString()
   readonly start_address: string;
 
   @ApiModelProperty()
-  @IsNotEmpty()
+  @IsString()
   readonly destination_address: string;
 
   @ApiModelProperty()
-  @IsNotEmpty()
+  @IsNumber()
   readonly price: number;
 
   @ApiModelProperty({ type: Date })
-  @IsNotEmpty()
   @IsDateString()
   readonly date: Date;
 
   @ApiModelProperty()
-  @IsNotEmpty()
   @IsDateString()
   readonly distance: number;
 }

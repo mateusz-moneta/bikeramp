@@ -16,7 +16,6 @@ export class StatsService {
 
   async getMonthlyStats(currency: Currency, distanceUnit: DistanceUnit): Promise<MonthlyStatDto[]> {
     const { firstDay, lastDay } = this.dateService.getFirstAndLastDay(TimeUnit.MONTH);
-    console.log({ firstDay, lastDay });
 
     return await getConnection()
       .createQueryBuilder()
