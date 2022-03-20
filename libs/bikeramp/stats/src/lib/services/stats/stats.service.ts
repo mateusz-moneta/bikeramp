@@ -5,7 +5,6 @@ import { Currency } from '../../models/currency.enum';
 import { DateService } from '../date/date.service';
 import { DistanceUnit } from '../../models/distance-unit.enum';
 import { MonthlyStatDto } from '../../dto/monthly-stat.dto';
-import { TimeUnit } from '../../models/time-unit.enum';
 import { Trip } from '@bikeramp/bikeramp/trips-database';
 import { WeeklyStatDto } from '../../dto/weekly-stat.dto';
 
@@ -15,7 +14,7 @@ export class StatsService {
   constructor(private readonly dateService: DateService) {}
 
   async getMonthlyStats(currency: Currency, distanceUnit: DistanceUnit): Promise<MonthlyStatDto[]> {
-    const { firstDay, lastDay } = this.dateService.getFirstAndLastDay(TimeUnit.MONTH);
+    const { firstDay, lastDay } = this.dateService.getFirstAndLastDayOfMonth();
 
     return await getConnection()
       .createQueryBuilder()
@@ -34,7 +33,7 @@ export class StatsService {
   }
 
   async getWeeklyStats(currency: Currency, distanceUnit: DistanceUnit): Promise<WeeklyStatDto> {
-    const { firstDay, lastDay } = this.dateService.getFirstAndLastDay(TimeUnit.WEEK);
+    const { firstDay, lastDay } = this.dateService.getFirstAndLastDayOfWeek();
 
     return await getConnection()
       .createQueryBuilder()

@@ -18,6 +18,7 @@ export class OpenStreetMapsService {
       return { lat: +lat, lon: +lon };
     } catch (error) {
       console.error(error);
+      return null;
     }
   }
 }

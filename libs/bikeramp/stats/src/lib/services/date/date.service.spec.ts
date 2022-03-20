@@ -1,9 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import * as moment from 'moment';
 
-import { dateFormat } from '../../configs/date-format.config';
 import { DateService } from './date.service';
-import { TimeUnit } from '../../models/time-unit.enum';
 
 describe(DateService.name, () => {
   let dateService: DateService;
@@ -16,41 +13,42 @@ describe(DateService.name, () => {
     dateService = await module.get(DateService);
   });
 
+  beforeAll(() => {
+    jest.useFakeTimers('modern');
+    jest.setSystemTime(new Date(2022, 2, 20));
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   it('DateService - should be defined', () => {
     expect(dateService).toBeDefined();
   });
 
-  describe('getFirstAndLastDay', () => {
-    it('should call getFirstAndLastDay method for month', async () => {
-      const getFirstAndLastDaySpy = jest.spyOn(dateService, 'getFirstAndLastDay');
-      dateService.getFirstAndLastDay(TimeUnit.MONTH);
-      expect(getFirstAndLastDaySpy).toHaveBeenCalledWith(TimeUnit.MONTH);
+  describe('getFirstAndLastDayOfMonth', () => {
+    it('should call getFirstAndLastDayOfMonth method', async () => {
+      const getFirstAndLastDayOfMonthSpy = jest.spyOn(dateService, 'getFirstAndLastDayOfMonth');
+      dateService.getFirstAndLastDayOfMonth();
+      expect(getFirstAndLastDayOfMonthSpy).toHaveBeenCalled();
     });
 
-    it('should call getFirstAndLastDay method for week', async () => {
-      const getFirstAndLastDaySpy = jest.spyOn(dateService, 'getFirstAndLastDay');
-      dateService.getFirstAndLastDay(TimeUnit.WEEK);
-      expect(getFirstAndLastDaySpy).toHaveBeenCalledWith(TimeUnit.WEEK);
+    it('should be returned result for getFirstAndLastDayOfMonth method', async () => {
+      const result = dateService.getFirstAndLastDayOfMonth();
+      expect(result).toEqual({ firstDay: '2022/03/01', lastDay: '2022/03/31' });
     });
   });
 
-  describe('moment', () => {
-    it('should return a first and last day of month', async () => {
-      const today = moment('03/08/2022');
-      const firstDay = today.startOf('month').format(dateFormat);
-      const lastDay = today.endOf('month').format(dateFormat);
-
-      expect(firstDay).toBe('01/03/2022');
-      expect(lastDay).toBe('31/03/2022');
+  describe('getFirstAndLastDayOfWeek', () => {
+    it('should call getFirstAndLastDayOfWeek method', async () => {
+      const getFirstAndLastDayOfWeekSpy = jest.spyOn(dateService, 'getFirstAndLastDayOfWeek');
+      dateService.getFirstAndLastDayOfWeek();
+      expect(getFirstAndLastDayOfWeekSpy).toHaveBeenCalled();
     });
 
-    it('should return a first and last day of week', async () => {
-      const today = moment('03/08/2022');
-      const firstDay = today.startOf('week').format(dateFormat);
-      const lastDay = today.endOf('week').format(dateFormat);
-
-      expect(firstDay).toBe('06/03/2022');
-      expect(lastDay).toBe('12/03/2022');
+    it('should be returned result for getFirstAndLastDayOfWeek method', async () => {
+      const result = dateService.getFirstAndLastDayOfWeek();
+      expect(result).toEqual({ firstDay: '2022/03/20', lastDay: '2022/03/26' });
     });
   });
 });

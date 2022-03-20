@@ -1,16 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import * as moment from 'moment';
+import { endOfMonth, endOfWeek, format, startOfMonth, startOfWeek } from 'date-fns';
 
 import { dateFormat } from '../../configs/date-format.config';
 import { DateRange } from '../../models/date-range.interface';
-import { TimeUnit } from '../../models/time-unit.enum';
 
 @Injectable()
 export class DateService {
-  getFirstAndLastDay(timeUnit: TimeUnit): DateRange {
-    const today = moment();
-    const firstDay = today.startOf(timeUnit).format(dateFormat);
-    const lastDay = today.endOf(timeUnit).format(dateFormat);
+  getFirstAndLastDayOfMonth(): DateRange {
+    const today = new Date();
+    const firstDay = format(startOfMonth(today), dateFormat);
+    const lastDay = format(endOfMonth(today), dateFormat);
+
+    return { firstDay, lastDay };
+  }
+
+  getFirstAndLastDayOfWeek(): DateRange {
+    const today = new Date();
+    const firstDay = format(startOfWeek(today), dateFormat);
+    const lastDay = format(endOfWeek(today), dateFormat);
 
     return { firstDay, lastDay };
   }

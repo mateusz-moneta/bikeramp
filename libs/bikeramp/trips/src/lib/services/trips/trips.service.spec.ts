@@ -1,25 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { CreateTripDto } from '../../dto/create-trip.dto';
+import { MapsService } from '../maps/maps.service';
+import { OpenStreetMapsService } from '../open-street-maps/open-street-maps.service';
 import { TripsService } from './trips.service';
-
-class TripsServiceMock {
-  create(createTripDto: CreateTripDto) {
-    return {};
-  }
-}
 
 describe(TripsService.name, () => {
   let tripsService: TripsService;
 
   beforeEach(async () => {
-    const TripsServiceProvider = {
-      provide: TripsService,
-      useClass: TripsServiceMock
-    }
-
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TripsService, TripsServiceProvider]
+      providers: [MapsService, OpenStreetMapsService, TripsService]
     }).compile();
 
     tripsService = module.get<TripsService>(TripsService);

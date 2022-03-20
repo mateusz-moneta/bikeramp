@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { BikerampStatsController } from './bikeramp-stats.controller';
+import { DateService } from './services/date/date.service';
 import { StatsService } from './services/stats/stats.service';
 
 describe(BikerampStatsController.name, () => {
@@ -8,17 +9,9 @@ describe(BikerampStatsController.name, () => {
   let spyService: StatsService;
 
   beforeEach(async () => {
-    const StatsServiceProvider = {
-      provide: StatsService,
-      useFactory: () => ({
-        getMonthly: jest.fn(() => {}),
-        getWeekly: jest.fn(() => {})
-      })
-    }
-
     const module: TestingModule = await Test.createTestingModule({
       controllers: [BikerampStatsController],
-      providers: [StatsService, StatsServiceProvider]
+      providers: [DateService, StatsService]
     }).compile();
 
     controller = module.get<BikerampStatsController>(BikerampStatsController);
